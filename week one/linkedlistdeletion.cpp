@@ -15,7 +15,7 @@ struct node
 class linked_list
 {
 private:
-    struct node *head, *tail;
+    struct node *head, *tail, *previous;
 
 public:
     linked_list() // Constructor to initialize an empty linked list
@@ -75,6 +75,7 @@ public:
         }
         else if (Questionstringfor123 == "3")
         {
+            delete_node_specific();
         }
         else
         {
@@ -93,8 +94,8 @@ public:
 
     void delete_node_end()
     {
-        struct node *previous;
         tail = head;
+        previous= head;
         while (tail->next != 0);
         {
             previous = tail;
@@ -106,14 +107,30 @@ public:
         }
         else
         {
-            previous->next =0; 
+            previous->next = 0;
         }
-        free(tail);
+        // free(tail);
         display();
     }
 
-    void insert_node_specific()
+    void delete_node_specific()
     {
+        struct node *nextnode;
+        tail= head;
+        do {
+            std::cout<< "Enter the postion: ";
+            std::cin>> pos;
+        }while(pos>count);
+        
+        while (i>pos-1)
+        {
+            tail=tail->next;
+            i++;
+        }
+        nextnode=tail->next;
+        tail->next=nextnode->next;
+        free(nextnode);
+        display();
     }
 
     void display()
