@@ -22,7 +22,6 @@ public:
         head = 0;
         tail =0;
     }
-
     void add_node()
     {
         do
@@ -64,7 +63,7 @@ public:
             tail = tail->next;
         }
         std::cout << std::endl;
-        std::cout << "there are" << count << "\n";
+        std::cout << "there are " << count << "\n";
     }
 };
 
