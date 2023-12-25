@@ -14,26 +14,25 @@ struct node
 class doublylinkedlist
 {
 private:
-    struct node *head, *tail, *newnode;
+    struct node *head, *tail;
 
 public:
     doublylinkedlist()
     {
-        std::cout << "1";
         head = 0;
-        newnode->next = 0;
-        newnode->previous = 0;
+        tail =0;
     }
 
     void add_node()
     {
-        std::cout << "2";
         do
         {
             node *newnode = new node;
             std::cout << "Enter the element: ";
             std::cin >> newnode->data;
 
+            newnode->next=0;
+            newnode->previous=0;
             if (head == 0)
             {
                 head = newnode;
