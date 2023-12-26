@@ -2,7 +2,7 @@
 
 using namespace std;
 std::string Questionstring, Questionstringfor123;
-int count;
+int count, pos, i=1;
 
 struct node
 {
@@ -116,6 +116,24 @@ public:
     }
 
     void insertion_at_specific(){
+        node *newnode = new node;        
+        do {
+        std::cout << "Enter the Postion: ";
+        std::cin >> pos;
+        }while (pos>count);
+
+        std::cout << "Enter the element: ";
+        std::cin >> newnode->data;
+
+        tail=head;
+        while ( i <pos)
+        {
+            tail=tail->next;
+            i++;
+        }
+        newnode->next=tail->next;
+        tail->next= newnode;
+        display();
     }
 
 };
