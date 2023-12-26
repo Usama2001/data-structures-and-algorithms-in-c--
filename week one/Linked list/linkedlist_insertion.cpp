@@ -79,6 +79,7 @@ public:
     }
 
     void insert_node_beginning(){
+        
         node *newnode = new node;
         std::cout << "Enter the element: ";
         std::cin >> newnode->data;
