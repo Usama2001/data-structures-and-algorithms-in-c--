@@ -14,7 +14,7 @@ struct node
 class doublylinkedlist
 {
 private:
-    struct node *head, *tail;
+    struct node *head, *tail, *insertEnt;
 
 public:
     doublylinkedlist()
@@ -48,6 +48,7 @@ public:
             std::cin >> Questionstring;
 
         } while (Questionstring == "yes");
+        insertEnt=tail;
         std::cout << "Linked List: ";
         display();
     }
@@ -63,8 +64,6 @@ public:
 
         if (Questionstringfor123=="1"){
             insertion_at_beginning(); 
-            std::cout << "Updated Linked List: ";
-            display();
         }
         else if (Questionstringfor123=="2"){
             insertion_at_end();
@@ -73,9 +72,10 @@ public:
             insertion_at_specific();
         }
         else{
-            std::cout << "Linked List: ";
-            display();
+            std::cout << "No change in results ";
         }
+        std::cout << "Updated Linked List: ";
+        display();
         
     }
 
@@ -105,6 +105,14 @@ public:
     }
 
     void insertion_at_end(){
+        node *newnode = new node;
+        std::cout << "Enter the element: ";
+        std::cin >> newnode->data;
+        newnode->next=0;
+        newnode->previous=0;
+        insertEnt->next=newnode;
+        newnode->previous=insertEnt;
+        insertEnt=newnode;
     }
 
     void insertion_at_specific(){
