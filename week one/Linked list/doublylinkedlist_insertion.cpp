@@ -83,7 +83,10 @@ public:
         {
             std::cout << "No change in results ";
         }
-        std::cout << "Updated Linked List: ";
+        if (Questionstringfor123 != "4")
+        {
+            std::cout << "Updated Linked List: ";
+        }
         display();
     }
 
@@ -104,11 +107,9 @@ public:
     void insertion_at_beginning()
     {
         node *newnode = new node;
-        if (Questionstringfor123 == "1")
-        {
-            std::cout << "Enter the element: ";
-        }
+        std::cout << "Enter the element: ";
         std::cin >> newnode->data;
+
         newnode->next = 0;
         newnode->previous = 0;
         head->previous = head;
@@ -119,10 +120,8 @@ public:
     void insertion_at_end()
     {
         node *newnode = new node;
-        if (Questionstringfor123 == "2")
-        {
-            std::cout << "Enter the element: ";
-        }
+
+        std::cout << "Enter the element: ";
         std::cin >> newnode->data;
         newnode->next = 0;
         newnode->previous = 0;
@@ -140,15 +139,18 @@ public:
             std::cin >> pos;
         } while (pos > count);
 
-        std::cout << "Enter the element: ";
-        std::cin >> newnode->data;
-
         if (pos == 1)
         {
             insertion_at_beginning();
         }
+        else if (pos == 2)
+        {
+            insertion_at_end();
+        }
         else
         {
+            std::cout << "Enter the element: ";
+            std::cin >> newnode->data;
             tail = head;
             while (i < pos - 1)
             {
