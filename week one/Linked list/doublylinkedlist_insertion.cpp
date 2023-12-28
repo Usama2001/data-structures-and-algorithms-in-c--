@@ -104,7 +104,10 @@ public:
     void insertion_at_beginning()
     {
         node *newnode = new node;
-        std::cout << "Enter the element: ";
+        if (Questionstringfor123 == "1")
+        {
+            std::cout << "Enter the element: ";
+        }
         std::cin >> newnode->data;
         newnode->next = 0;
         newnode->previous = 0;
@@ -116,7 +119,10 @@ public:
     void insertion_at_end()
     {
         node *newnode = new node;
-        std::cout << "Enter the element: ";
+        if (Questionstringfor123 == "2")
+        {
+            std::cout << "Enter the element: ";
+        }
         std::cin >> newnode->data;
         newnode->next = 0;
         newnode->previous = 0;
@@ -144,15 +150,15 @@ public:
         else
         {
             tail = head;
-            while (i < pos)
+            while (i < pos - 1)
             {
                 tail = tail->next;
                 i++;
             }
-            newnode->previous =tail;
-            newnode->next=tail->next;
-            tail->next=newnode;
-            newnode->next->previous=newnode;
+            newnode->previous = tail;
+            newnode->next = tail->next;
+            tail->next = newnode;
+            newnode->next->previous = newnode;
         }
     }
 };
