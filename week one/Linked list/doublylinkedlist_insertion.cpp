@@ -2,7 +2,7 @@
 
 using namespace std;
 std::string Questionstring, Questionstringfor123;
-int count, pos, i=1;
+int count, pos, i = 1;
 
 struct node
 {
@@ -20,7 +20,7 @@ public:
     doublylinkedlist()
     {
         head = 0;
-        tail =0;
+        tail = 0;
     }
     void add_node()
     {
@@ -30,8 +30,8 @@ public:
             std::cout << "Enter the element: ";
             std::cin >> newnode->data;
 
-            newnode->next=0;
-            newnode->previous=0;
+            newnode->next = 0;
+            newnode->previous = 0;
             if (head == 0)
             {
                 head = newnode;
@@ -48,35 +48,43 @@ public:
             std::cin >> Questionstring;
 
         } while (Questionstring == "yes");
-        insertEnt=tail;
+        insertEnt = tail;
         std::cout << "Linked List: ";
         display();
     }
 
-    void insert_node(){
+    void insert_node()
+    {
         add_node();
 
-        std::cout << "do you want to add node at Beginning >> Press 1" << "\n" 
-        << "do you want to add node at End >> Press 2" << "\n"
-        << "do you want to add node at specific position >> Press 3" << "\n" 
-        << "do you want to stop the code >> Press 4" << "\n";
-        std::cin>> Questionstringfor123;
+        std::cout << "do you want to add node at Beginning >> Press 1"
+                  << "\n"
+                  << "do you want to add node at End >> Press 2"
+                  << "\n"
+                  << "do you want to add node at specific position >> Press 3"
+                  << "\n"
+                  << "do you want to stop the code >> Press 4"
+                  << "\n";
+        std::cin >> Questionstringfor123;
 
-        if (Questionstringfor123=="1"){
-            insertion_at_beginning(); 
+        if (Questionstringfor123 == "1")
+        {
+            insertion_at_beginning();
         }
-        else if (Questionstringfor123=="2"){
+        else if (Questionstringfor123 == "2")
+        {
             insertion_at_end();
         }
-        else if (Questionstringfor123=="3"){
+        else if (Questionstringfor123 == "3")
+        {
             insertion_at_specific();
         }
-        else{
+        else
+        {
             std::cout << "No change in results ";
         }
         std::cout << "Updated Linked List: ";
         display();
-        
     }
 
     void display()
@@ -93,49 +101,60 @@ public:
         std::cout << "there are " << count << "\n";
     }
 
-    void insertion_at_beginning(){
+    void insertion_at_beginning()
+    {
         node *newnode = new node;
         std::cout << "Enter the element: ";
         std::cin >> newnode->data;
-        newnode->next=0;
-        newnode->previous=0;
-        head->previous=head;
-        newnode->next=head;
-        head=newnode;
+        newnode->next = 0;
+        newnode->previous = 0;
+        head->previous = head;
+        newnode->next = head;
+        head = newnode;
     }
 
-    void insertion_at_end(){
+    void insertion_at_end()
+    {
         node *newnode = new node;
         std::cout << "Enter the element: ";
         std::cin >> newnode->data;
-        newnode->next=0;
-        newnode->previous=0;
-        insertEnt->next=newnode;
-        newnode->previous=insertEnt;
-        insertEnt=newnode;
+        newnode->next = 0;
+        newnode->previous = 0;
+        insertEnt->next = newnode;
+        newnode->previous = insertEnt;
+        insertEnt = newnode;
     }
 
-    void insertion_at_specific(){
-        node *newnode = new node;        
-        do {
-        std::cout << "Enter the Postion: ";
-        std::cin >> pos;
-        }while (pos>count);
-
-        std::cout << "Enter the element: ";
-        std::cin >> newnode->data;
-
-        tail=head;
-        while ( i <pos)
+    void insertion_at_specific()
+    {
+        node *newnode = new node;
+        do
         {
-            tail=tail->next;
-            i++;
-        }
-        newnode->next=tail->next;
-        tail->next= newnode;
-        display();
-    }
+            std::cout << "Enter the Postion: ";
+            std::cin >> pos;
+        } while (pos > count);
 
+        std::cout << "Enter the element: ";
+        std::cin >> newnode->data;
+
+        if (pos == 1)
+        {
+            insertion_at_beginning();
+        }
+        else
+        {
+            tail = head;
+            while (i < pos)
+            {
+                tail = tail->next;
+                i++;
+            }
+            newnode->previous =tail;
+            newnode->next=tail->next;
+            tail->next=newnode;
+            newnode->next->previous=newnode;
+        }
+    }
 };
 
 int main()
