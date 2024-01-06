@@ -143,7 +143,7 @@ public:
         {
             insertion_at_beginning();
         }
-        else if (pos == 2)
+        else if (pos == count)
         {
             insertion_at_end();
         }
