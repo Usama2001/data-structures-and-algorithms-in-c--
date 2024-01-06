@@ -14,7 +14,7 @@ struct node
 class doublylinkedlist
 {
 private:
-    struct node *head, *tail;
+    struct node *head, *tail, *nextnode, *current;
 
 public:
     doublylinkedlist()
@@ -65,13 +65,33 @@ public:
         std::cout << std::endl;
         std::cout << "there are " << count << "\n";
     }
+
+    void reverse(){
+        add_node();
+
+        current=head;
+        tail=0;
+        while (current!=0)
+        {
+            tail = current->previous;
+            current->previous = current->next;
+            current->next = tail;
+            current = current->previous;
+        }
+
+        if (tail != nullptr) {
+            head = tail->previous;
+            tail = tail;
+        }
+        display();
+    }
 };
 
 int main()
 {
     // Create a linked list object
     doublylinkedlist a;
-    a.add_node();
+    a.reverse();
 
     return 0;
 }
