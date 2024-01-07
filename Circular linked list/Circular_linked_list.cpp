@@ -39,15 +39,14 @@ public:
             {
                 head = newnode;
                 tail = newnode;
-                newnode->next = head; // Make it point to itself to form a circle
             }
             else
             {
                 // Otherwise, add the new node to the end and update the tail
                 tail->next = newnode;
                 tail = newnode;
-                newnode->next = head; // Make it point back to the head to form a circle
             }
+            newnode->next = head; // Make it point to itself to form a circle //Make it point back to the head to form a circle
 
             cout << "Do you want to add more elements? (yes/no): ";
             cin >> Questionstring;
