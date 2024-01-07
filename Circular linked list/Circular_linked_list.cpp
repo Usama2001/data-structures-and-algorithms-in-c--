@@ -1,85 +1,84 @@
-
 #include <iostream>
 
 using namespace std;
 std::string Questionstring;
 
-// Node structure for a singly linked list
+// Node structure for a circular linked list
 struct node
 {
     int data;
     node *next;
 };
 
-// Linked list class
-class circular_linked_list
+// Circular linked list class
+class CircularLinkedList
 {
 private:
     struct node *head, *tail;
 
 public:
-    // Constructor to initialize an empty linked list
-    circular_linked_list()
+    // Constructor to initialize an empty circular linked list
+    CircularLinkedList()
     {
         head = NULL;
         tail = NULL;
     }
 
-    // Function to add a new node to the end of the list
+    // Function to add a new node to the end of the circular linked list
     void add_node()
     {
         do
-        { // Create a new node
+        {
+            // Create a new node
             node *newnode = new node;
-            std::cout << "Enter the element: ";
-            std::cin >> newnode->data;
-            newnode->next = NULL;
+            cout << "Enter the element: ";
+            cin >> newnode->data;
+
             // If the list is empty, set both head and tail to the new node
             if (head == NULL)
             {
                 head = newnode;
                 tail = newnode;
+                newnode->next = head; // Make it point to itself to form a circle
             }
             else
             {
                 // Otherwise, add the new node to the end and update the tail
                 tail->next = newnode;
                 tail = newnode;
+                newnode->next = head; // Make it point back to the head to form a circle
             }
-            tail->next = head;
-            std::cout << "do you wan to add more element? (yes/no): ";
-            std::cin >> Questionstring;
+
+            cout << "Do you want to add more elements? (yes/no): ";
+            cin >> Questionstring;
         } while (Questionstring == "yes");
-        std::cout << "Linked List: ";
+
+        // Display the circular linked list
+        cout << "Circular Linked List: ";
         display();
     }
 
+    // Function to display the elements of the circular linked list
     void display()
     {
-        if (head == 0)
+        // Reset tail to head for traversal
+        node *current = head;
+        do
         {
-            std::cout << "List is empty ";
-        }
-        else
-        {
-            tail = head;
-            while (tail->next != head)
-            {
-                std::cout << tail->data << " (" << tail->next << ") ";
-                tail = tail->next;
-            }
-            std::cout << tail->data << " (" << tail->next << ") ";
-        }
-        std::cout << std::endl;
+            cout << current->data << " (" << current->next << ") ";
+            current = current->next;
+        } while (current != head);
+        cout << endl;
     }
 };
 
 int main()
 {
-    // Create a linked list object
-    circular_linked_list a;
+    // Create a circular linked list object
+    CircularLinkedList circularList;
 
-    // Add nodes to the end of the list
-    a.add_node();
+    // Add nodes to the end of the circular linked list
+    circularList.add_node();
+
     return 0;
 }
