@@ -1,8 +1,8 @@
 #include <iostream>
 
 using namespace std;
-std::string Questionstring,Questionstringfor123;
-int count, pos, i=1;
+std::string Questionstring, Questionstringfor123;
+int count, pos, i = 1;
 
 // Node structure for a circular linked list
 struct node
@@ -88,10 +88,18 @@ public:
         if (Questionstringfor123 == "1")
         {
             insert_node_beginning();
+            //cheaker 
+            std::cout << tail->next->data;
+            cout << endl;
+
         }
         else if (Questionstringfor123 == "2")
         {
             insert_node_end();
+            //cheaker 
+            std::cout << tail->next->data;
+            cout << endl;
+
         }
         else if (Questionstringfor123 == "3")
         {
@@ -108,52 +116,45 @@ public:
     void insert_node_beginning()
     {
         node *newnode = new node;
-        std::cout << "Enter the element: ";
+        std::cout << "Enter the Element: ";
         std::cin >> newnode->data;
-        newnode->next = head;
-        head = newnode;
+
+        newnode->next = 0;
+        if (tail == 0)
+        {
+            tail = newnode;
+            tail->next = newnode;
+        }
+        else
+        {
+            newnode->next = tail->next;
+            tail->next = newnode;
+        }
     }
 
     void insert_node_end()
     {
         node *newnode = new node;
-        std::cout << "Enter the element: ";
+        std::cout << "Enter the Element: ";
         std::cin >> newnode->data;
+
         newnode->next = 0;
-        tail = head;
-        while (tail->next != 0)
+        if (tail == 0)
         {
-            tail = tail->next;
+            tail = newnode;
+            tail->next = newnode;
         }
-        tail->next = newnode;
+        else
+        {
+            newnode->next = tail->next;
+            tail->next = newnode;
+            tail=newnode;
+        }
     }
 
     void insert_node_specific()
     {
-        node *newnode = new node;
-        do
-        {
-            std::cout << "Enter the Postion: ";
-            std::cin >> pos;
-        } while (pos > count);
-
-        std::cout << "Enter the element: ";
-        std::cin >> newnode->data;
-
-        tail = head;
-        while (i < pos)
-        {
-            tail = tail->next;
-            i++;
-        }
-        newnode->next = tail->next;
-        tail->next = newnode;
     }
-
-
-
-
-
 };
 
 int main()
@@ -162,7 +163,7 @@ int main()
     CircularLinkedList circularList;
 
     // Add nodes to the end of the circular linked list
-    circularList.add_node();
+    circularList.insert_node();
 
     return 0;
 }
