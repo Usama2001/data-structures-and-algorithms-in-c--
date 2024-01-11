@@ -1,7 +1,8 @@
 #include <iostream>
 
 using namespace std;
-std::string Questionstring;
+std::string Questionstring, Questionstringfor123;
+int count, pos, i = 1;
 
 // Node structure for a circular linked list
 struct node
@@ -69,6 +70,60 @@ public:
         } while (current != head);
         cout << endl;
     }
+
+    void insert_node()
+    {
+        add_node();
+
+        std::cout << "do you want to delete node at Beginning >> Press 1"
+                  << "\n"
+                  << "do you want to delete node at End >> Press 2"
+                  << "\n"
+                  << "do you want to delete node at specific position >> Press 3"
+                  << "\n"
+                  << "do you want to stop the code >> Press 4"
+                  << "\n";
+        std::cin >> Questionstringfor123;
+
+        if (Questionstringfor123 == "1")
+        {
+            insert_node_beginning();
+            // cheaker
+            std::cout << tail->next->data;
+            cout << endl;
+        }
+        else if (Questionstringfor123 == "2")
+        {
+            insert_node_end();
+            // cheaker
+            std::cout << tail->next->data;
+            cout << endl;
+        }
+        else if (Questionstringfor123 == "3")
+        {
+            insert_node_specific();
+        }
+        else
+        {
+            std::cout << "No changes ";
+        }
+        std::cout << "Updated Linked List: ";
+        display();
+    }
+
+    void insert_node_beginning()
+    {
+    }
+
+    void insert_node_end()
+    {
+    
+    }
+
+    void insert_node_specific()
+    {
+      
+    }
 };
 
 int main()
@@ -77,7 +132,7 @@ int main()
     CircularLinkedList circularList;
 
     // Add nodes to the end of the circular linked list
-    circularList.add_node();
+    circularList.insert_node();
 
     return 0;
 }
