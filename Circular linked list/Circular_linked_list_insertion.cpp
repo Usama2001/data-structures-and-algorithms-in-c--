@@ -154,6 +154,24 @@ public:
 
     void insert_node_specific()
     {
+        node *newnode = new node;
+        do {
+           std::cout << "Enter the Position: ";
+           std::cin >> pos;
+        }while (pos>count);
+        
+        if (pos==1){
+            insert_node_beginning();
+        }
+        else if (pos== 2)
+        {
+            insert_node_end();
+        }
+        
+        std::cout << "Enter the Element: ";
+        std::cin >> newnode->data;
+
+        
     }
 };
 
