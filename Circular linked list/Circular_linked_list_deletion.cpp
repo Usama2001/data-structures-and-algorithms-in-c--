@@ -113,19 +113,24 @@ public:
 
     void delete_node_beginning()
     {
-        temp=tail->next;
-        if (tail == NULL)
+        if (head == NULL)
         {
             std::cout << "There is no element in the circular linked list";
             cout << endl;
         }
-        else if (temp->next=temp)
+        if (head->next == head) // Only one node in the circular list
         {
-            tail=0;
-            free(temp);
+            head = tail = NULL;
+            free(head);
+            std::cout << "The circular linked list is empty now";
+            cout << endl;
+            exit(0);
         }
-        else{
-            tail->next=temp->next;
+        else
+        {
+            node *temp = head;
+            tail->next = head->next;
+            head = head->next;
             free(temp);
         }
     }
