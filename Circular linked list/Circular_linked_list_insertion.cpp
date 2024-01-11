@@ -88,18 +88,16 @@ public:
         if (Questionstringfor123 == "1")
         {
             insert_node_beginning();
-            //cheaker 
+            // cheaker
             std::cout << tail->next->data;
             cout << endl;
-
         }
         else if (Questionstringfor123 == "2")
         {
             insert_node_end();
-            //cheaker 
+            // cheaker
             std::cout << tail->next->data;
             cout << endl;
-
         }
         else if (Questionstringfor123 == "3")
         {
@@ -148,30 +146,42 @@ public:
         {
             newnode->next = tail->next;
             tail->next = newnode;
-            tail=newnode;
+            tail = newnode;
         }
     }
 
     void insert_node_specific()
     {
         node *newnode = new node;
-        do {
-           std::cout << "Enter the Position: ";
-           std::cin >> pos;
-        }while (pos>count);
-        
-        if (pos==1){
+        do
+        {
+            std::cout << "Enter the Position: ";
+            std::cin >> pos;
+        } while (pos > count);
+
+        if (pos == 1)
+        {
             insert_node_beginning();
         }
-        else if (pos== 2)
+        else if (pos == 2)
         {
             insert_node_end();
         }
-        
-        std::cout << "Enter the Element: ";
-        std::cin >> newnode->data;
-
-        
+        else
+        {
+            std::cout << "Enter the Element: ";
+            std::cin >> newnode->data;
+            newnode->next=0;
+            tail=tail->next;
+            while (i<pos-1)
+            {
+                tail=tail->next;
+                ++i;
+            }
+            newnode->next=tail->next;
+            tail->next=newnode;
+            
+        }
     }
 };
 
