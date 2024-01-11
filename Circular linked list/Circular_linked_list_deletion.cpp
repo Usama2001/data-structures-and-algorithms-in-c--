@@ -15,7 +15,7 @@ struct node
 class CircularLinkedList
 {
 private:
-    struct node *head, *tail;
+    struct node *head, *tail, *temp;
 
 public:
     // Constructor to initialize an empty circular linked list
@@ -71,7 +71,7 @@ public:
         cout << endl;
     }
 
-    void insert_node()
+    void delete_node()
     {
         add_node();
 
@@ -87,21 +87,21 @@ public:
 
         if (Questionstringfor123 == "1")
         {
-            insert_node_beginning();
+            delete_node_beginning();
             // cheaker
             std::cout << tail->next->data;
             cout << endl;
         }
         else if (Questionstringfor123 == "2")
         {
-            insert_node_end();
+            delete_node_end();
             // cheaker
             std::cout << tail->next->data;
             cout << endl;
         }
         else if (Questionstringfor123 == "3")
         {
-            insert_node_specific();
+            delete_node_specific();
         }
         else
         {
@@ -111,18 +111,31 @@ public:
         display();
     }
 
-    void insert_node_beginning()
+    void delete_node_beginning()
+    {
+        temp=tail->next;
+        if (tail == NULL)
+        {
+            std::cout << "There is no element in the circular linked list";
+            cout << endl;
+        }
+        else if (temp->next=temp)
+        {
+            tail=0;
+            free(temp);
+        }
+        else{
+            tail->next=temp->next;
+            free(temp);
+        }
+    }
+
+    void delete_node_end()
     {
     }
 
-    void insert_node_end()
+    void delete_node_specific()
     {
-    
-    }
-
-    void insert_node_specific()
-    {
-      
     }
 };
 
@@ -132,7 +145,7 @@ int main()
     CircularLinkedList circularList;
 
     // Add nodes to the end of the circular linked list
-    circularList.insert_node();
+    circularList.delete_node();
 
     return 0;
 }
