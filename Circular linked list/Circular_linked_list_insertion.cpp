@@ -157,13 +157,13 @@ public:
         {
             std::cout << "Enter the Position: ";
             std::cin >> pos;
-        } while (pos > count);
+        } while (pos < count);
 
         if (pos == 1)
         {
             insert_node_beginning();
         }
-        else if (pos == 2)
+        else if (pos == count)
         {
             insert_node_end();
         }
