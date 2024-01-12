@@ -155,40 +155,43 @@ public:
     }
 
     void delete_node_specific()
-{
-    if (head == NULL)
     {
-        cout << "Circular Linked list is empty." << endl;
-    }
-    else
-    {
+        
+        do {
         cout << "Enter the position to delete: ";
         cin >> pos;
-
+        }whi;e
+        if (head == NULL)
+        {
+            cout << "Circular Linked list is empty." << endl;
+        }
         if (pos == 1) // Deleting the first node
         {
-           delete_node_beginning();
+            delete_node_beginning();
         }
+         else if (pos == count)
+            {
+                delete_node_end();
+            }
 
-        else if (pos==count){
-            delete_node_end();
-        }
         else
         {
-            current = head;
-            previous = NULL;
-            int count = 1;
+           
 
-            while (count < pos && current->next != head)
-            {
-                previous = current;
-                current = current->next;
-                count++;
-            }
+           
+          current = head;
+                previous = NULL;
+                int count = 1;
+
+                while (count < pos && current->next != head)
+                {
+                    previous = current;
+                    current = current->next;
+                    count++;
+                }
+            
         }
     }
-}
-
 };
 
 int main()
