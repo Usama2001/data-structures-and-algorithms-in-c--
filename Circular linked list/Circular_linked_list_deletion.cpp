@@ -63,8 +63,10 @@ public:
     {
         // Reset tail to head for traversal
         node *current = head;
+        count=0;
         do
         {
+            ++count;
             cout << current->data << " (" << current->next << ") ";
             current = current->next;
         } while (current != head);
@@ -156,15 +158,12 @@ public:
 
     void delete_node_specific()
     {
-        
-        do {
-        cout << "Enter the position to delete: ";
-        cin >> pos;
-        }while (/* condition */)
+        do
         {
-            /* code */
-        }
-        
+            cout << "Enter the position to delete: ";
+            cin >> pos;
+        } while (pos > count);
+
         if (head == NULL)
         {
             cout << "Circular Linked list is empty." << endl;
@@ -173,27 +172,33 @@ public:
         {
             delete_node_beginning();
         }
-         else if (pos == count)
-            {
-                delete_node_end();
-            }
+
+        else if (pos == count)
+        {
+            delete_node_end();
+        }
 
         else
         {
-           
+            current = head;
+            previous = NULL;
+            int count = 1;
 
-           
-          current = head;
-                previous = NULL;
-                int count = 1;
-
-                while (count < pos && current->next != head)
+            while (count < pos && current->next != head)
+            {
+                previous = current;
+                current = current->next;
+                count++;
+            }
+            if (count == pos)
+            {
+                previous->next = current->next;
+                if (current == tail) // If the last node is being deleted
                 {
-                    previous = current;
-                    current = current->next;
-                    count++;
+                    tail = previous;
                 }
-            
+                free(current);
+            }
         }
     }
 };
