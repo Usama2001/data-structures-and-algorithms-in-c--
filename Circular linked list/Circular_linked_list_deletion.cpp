@@ -88,16 +88,10 @@ public:
         if (Questionstringfor123 == "1")
         {
             delete_node_beginning();
-            // cheaker
-            std::cout << tail->next->data;
-            cout << endl;
         }
         else if (Questionstringfor123 == "2")
         {
             delete_node_end();
-            // cheaker
-            std::cout << tail->next->data;
-            cout << endl;
         }
         else if (Questionstringfor123 == "3")
         {
@@ -137,6 +131,27 @@ public:
 
     void delete_node_end()
     {
+        if (head == NULL)
+        {
+            cout << "Circular Linked list is empty." << endl;
+        }
+        else if (head->next == head) // Only one node in the circular list
+        {
+            free(head);
+            head = tail = NULL;
+        }
+        else
+        {
+            node *current = head;
+            while (current->next != tail)
+            {
+                current = current->next;
+            }
+
+            free(tail);
+            tail = current;
+            tail->next = head;
+        }
     }
 
     void delete_node_specific()
