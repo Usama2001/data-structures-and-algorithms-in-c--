@@ -15,7 +15,7 @@ struct node
 class CircularLinkedList
 {
 private:
-    struct node *head, *tail, *temp;
+    struct node *head, *tail, *temp, *current, *previous;
 
 public:
     // Constructor to initialize an empty circular linked list
@@ -175,8 +175,8 @@ public:
         }
         else
         {
-            node *current = head;
-            node *previous = NULL;
+            current = head;
+            previous = NULL;
             int count = 1;
 
             while (count < pos && current->next != head)
