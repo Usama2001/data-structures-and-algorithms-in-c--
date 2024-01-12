@@ -185,20 +185,6 @@ public:
                 current = current->next;
                 count++;
             }
-
-            if (count == pos)
-            {
-                previous->next = current->next;
-                if (current == tail) // If the last node is being deleted
-                {
-                    tail = previous;
-                }
-                free(current);
-            }
-            else
-            {
-                cout << "Invalid position." << endl;
-            }
         }
     }
 }
