@@ -160,7 +160,11 @@ public:
         do {
         cout << "Enter the position to delete: ";
         cin >> pos;
-        }whi;e
+        }while (/* condition */)
+        {
+            /* code */
+        }
+        
         if (head == NULL)
         {
             cout << "Circular Linked list is empty." << endl;
