@@ -1,83 +1,87 @@
+
 #include <iostream>
 
 using namespace std;
 std::string Questionstring;
+int count;
 
-// Node structure for a circular linked list
 struct node
 {
     int data;
     node *next;
+    node *previous;
 };
 
-// Circular linked list class
-class CircularLinkedList
+class circularDoublyLinkedList
 {
 private:
     struct node *head, *tail;
 
 public:
-    // Constructor to initialize an empty circular linked list
-    CircularLinkedList()
+    circularDoublyLinkedList()
     {
-        head = NULL;
-        tail = NULL;
+        head = nullptr;
+        tail = nullptr;
     }
 
-    // Function to add a new node to the end of the circular linked list
     void add_node()
     {
         do
         {
-            // Create a new node
             node *newnode = new node;
             cout << "Enter the element: ";
             cin >> newnode->data;
 
-            // If the list is empty, set both head and tail to the new node
-            if (head == NULL)
+            newnode->next = nullptr;
+            newnode->previous = nullptr;
+            if (head == nullptr)
             {
                 head = newnode;
                 tail = newnode;
             }
             else
             {
-                // Otherwise, add the new node to the end and update the tail
                 tail->next = newnode;
+                newnode->previous = tail;
                 tail = newnode;
             }
-            newnode->next = head; // Make it point to itself to form a circle //Make it point back to the head to form a circle
 
             cout << "Do you want to add more elements? (yes/no): ";
             cin >> Questionstring;
+
         } while (Questionstring == "yes");
 
-        // Display the circular linked list
-        cout << "Circular Linked List: ";
+        if (head != nullptr)
+        {
+            tail->next = head; // Make the list circular
+            head->previous = tail; // Update the previous pointer of the first node
+        }
+
+        cout << "Circular Doubly Linked List: ";
         display();
     }
 
-    // Function to display the elements of the circular linked list
     void display()
     {
-        // Reset tail to head for traversal
         node *current = head;
+        count = 0;
         do
         {
-            cout << current->data << " (" << current->next << ") ";
+            count++;
+            cout << "(" << current->previous << ") " << current->data << " (" << current->next << ") ";
             current = current->next;
         } while (current != head);
+
         cout << endl;
+        cout << "There are " << count << " nodes/elements in the circular doubly linked list" << endl;
     }
 };
 
 int main()
 {
-    // Create a circular linked list object
-    CircularLinkedList circularList;
-
-    // Add nodes to the end of the circular linked list
-    circularList.add_node();
+    // Create a circular doubly linked list object
+    circularDoublyLinkedList a;
+    a.add_node();
 
     return 0;
 }
