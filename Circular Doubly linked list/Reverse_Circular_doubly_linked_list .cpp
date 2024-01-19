@@ -61,7 +61,20 @@ public:
         display();
     }
 
-   
+    void display()
+    {
+        node *current = head;
+        count = 0;
+        do
+        {
+            count++;
+            cout << "(" << current->previous << ") " << current->data << " (" << current->next << ") ";
+            current = current->next;
+        } while (current != head);
+
+        cout << endl;
+        cout << "There are " << count << " nodes/elements in the circular doubly linked list" << endl;
+    }
 };
 
 int main()
